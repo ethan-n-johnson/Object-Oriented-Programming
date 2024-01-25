@@ -1,6 +1,18 @@
 enum Pitch {
+    // Constructor for enum is undefined
     C, Db, D, Eb, E, F, 
     Gb, G, Ab, A, Bb, B;
+
+    private Pitch(String flat) {
+        this.flat = flat;
+    }
+    private String flat;
+
+    @Override
+    public String toString()
+    {
+        return flat;
+    }
 }
 
 public class Note {
