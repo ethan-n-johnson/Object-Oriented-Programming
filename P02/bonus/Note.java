@@ -1,7 +1,6 @@
 enum Pitch {
-    // Constructor for enum is undefined
-    C, Db, D, Eb, E, F, 
-    Gb, G, Ab, A, Bb, B;
+    C("C"), Db("Db"), D("D"), Eb("Eb"), E("E"), F("F"), 
+    Gb("Gb"), G("G"), Ab("Ab"), A("A"), Bb("Bb"), B("B");
 
     private Pitch(String flat) {
         this.flat = flat;
@@ -18,7 +17,15 @@ enum Pitch {
 public class Note {
     public Note(Pitch pitch, int octave) {
         this.pitch = pitch;
-        this.octave = octave;
+        if (octave < -5) {
+            this.octave = -5;
+        }
+        else if (octave > 4) {
+            this.octave = 4;
+        }
+        else {
+            this.octave = octave;
+        }
     }
     public Note() {
         this.pitch = null;

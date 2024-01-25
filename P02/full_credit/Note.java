@@ -6,7 +6,15 @@ enum Pitch {
 public class Note {
     public Note(Pitch pitch, int octave) {
         this.pitch = pitch;
-        this.octave = octave;
+        if (octave < -5) {
+            this.octave = -5;
+        }
+        else if (octave > 4) {
+            this.octave = 4;
+        }
+        else {
+            this.octave = octave;
+        }
     }
     public Note() {
         this.pitch = null;
