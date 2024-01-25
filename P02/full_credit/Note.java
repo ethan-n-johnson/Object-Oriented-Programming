@@ -6,6 +6,7 @@ enum Pitch {
 public class Note {
     public Note(Pitch pitch, int octave) {
         this.pitch = pitch;
+        this.octave = octave;
     }
     public Note() {
         this.pitch = null;
