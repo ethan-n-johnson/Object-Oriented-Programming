@@ -32,20 +32,43 @@ public class Note {
     }
     @Override
     public String toString() {
-        String superScript;
+        String superScript = "";
         if (pitch == null) {
             return " ";
         }
         else {
             switch (octave) {
                 case -5:
-                    
+                    superScript = "⁻⁵";
                     break;
-            
+                case -4:
+                    superScript = "⁻⁴";
+                    break;
+                case -3:
+                    superScript = "⁻³";
+                    break;
+                case -2:
+                    superScript = "⁻²";
+                    break;
+                case -1:
+                    superScript = "⁻¹";
+                    break;
+                case 1:
+                    superScript = "¹";
+                    break;
+                case 2:
+                    superScript = "²";
+                    break; 
+                case 3:
+                    superScript = "³";
+                    break;  
+                case 4:
+                    superScript = "⁴";
+                    break; 
                 default:
                     break;
             }
-            return pitch + (octave != 0 ? octave + "" : "");
+            return pitch + (octave != 0 ? superScript : "");
         }
     }
     private Pitch pitch;
