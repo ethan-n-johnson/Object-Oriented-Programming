@@ -1,8 +1,3 @@
-enum Pitch {
-    C, Db, D, Eb, E, F,
-    Gb, G, Ab, A, Bb, B;
-}
-
 public class Note {
     public Note(Pitch pitch, int octave) {
         this.pitch = pitch;
