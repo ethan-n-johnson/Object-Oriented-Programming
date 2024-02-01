@@ -9,7 +9,8 @@ public class Item {
 
     @Override
     public String toString(){
-        String formattedItem = String.format("%3d %-30s $%7d", quantity, product.toString(), getPrice());
+        double priceInDollars = getPrice()/100.00;
+        String formattedItem = String.format("%3d %-30s $%8.2f", quantity, product.toString(), priceInDollars);
         return formattedItem;
     }
     private Product product;
