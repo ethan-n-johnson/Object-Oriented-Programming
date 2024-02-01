@@ -17,7 +17,7 @@ public class Product {
     }
     @Override
     public String toString(){
-        double priceInDollars = price/100;
+        double priceInDollars = price/100.00;
         String formattedProduct = String.format("%-30s $%8.2f", name, priceInDollars);
         return formattedProduct;
     }
