@@ -9,7 +9,7 @@ public class Item {
 
     @Override
     public String toString(){
-        String formattedItem = String.format("%3d -30%s $%s", quantity, product.toString(), product.getPrice());
+        String formattedItem = String.format("%3d %-30s $%7d", quantity, product.toString(), getPrice());
         return formattedItem;
     }
     private Product product;
