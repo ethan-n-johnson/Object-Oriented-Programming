@@ -1,11 +1,11 @@
 public class Customer {
     public Customer(String name, String email){
         this.name = name;
-        if(name.contains("@") && email.substring(email.indexOf("@")).contains(".")){
+        if(name.contains("@") && email.indexOf("@") >= email.lastIndexOf(".")){
             this.email = email;
         }
         else{
-            throw new IllegalArgumentExpection("Invalid email address: " ++ email);
+            throw new IllegalArgumentException("Invalid email address: " + email);
         }
     }
     @Override

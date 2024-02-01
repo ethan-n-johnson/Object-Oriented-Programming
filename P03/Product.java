@@ -17,8 +17,7 @@ public class Product {
     }
     @Override
     public String toString(){
-        String price = String.format("%5.2d", price);
-        return String.format("-30%s $%s", name, price);
+        return String.format("-30%s $5.2d", name, price);
     }
 
     private static int nextStockNumber = 0;

@@ -4,13 +4,14 @@ public class Item {
         this.quantity = quantity;
     } 
     public int getPrice(){
-        return quantity*price;
+        return quantity*product.getPrice();
     }
 
     @Override
     public String toString(){
-        String formattedItem = String.format("%3d-30%s $%s",quantity, name, price);
-        return formattedItem
+        String formattedItem = String.format("%3d -30%s $%s", quantity, product.toString(), product.getPrice());
+        return formattedItem;
     }
     private Product product;
+    private int quantity;
 }
