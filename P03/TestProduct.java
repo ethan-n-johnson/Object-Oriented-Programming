@@ -33,7 +33,7 @@ public class TestProduct{
             System.err.println("Error: Unexpected exception");
             numberOfFailures++;
         }
-        if(checkpoint){
+        if(checkpoint == 1){
             System.err.println("Error: No exception");
         }
 
