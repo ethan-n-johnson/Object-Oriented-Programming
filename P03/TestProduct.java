@@ -1,6 +1,7 @@
 public class TestProduct{
     public static void main(String[] args)
     {
+        int checkpoint = 0;
         int price = 6390;
         int numberOfFailures = 0;
         String testProduct = "Test Product 1";
@@ -22,13 +23,20 @@ public class TestProduct{
         }
         try{
             Product p3 = new Product("Test Product 3", -7090);
+            checkpoint = 1;
         }
         catch(IllegalArgumentException e){
-            System.err.println("Error negative price provided");
+            // Caught and ignored
+        }
+        catch(Exception e)
+        {
+            System.err.println("Error: Unexpected exception");
             numberOfFailures++;
         }
+        if(checkpoint){
+            System.err.println("Error: No exception");
+        }
 
-        System.out.println(numberOfFailures);
         System.exit(numberOfFailures);
     }
 }
