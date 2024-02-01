@@ -1,5 +1,6 @@
 public class TestProduct{
-    public static int regressionTest(){
+    public static void main(String[] args)
+    {
         int price = 6390;
         int numberOfFailures = 0;
         String testProduct = "Test Product 1";
@@ -9,15 +10,15 @@ public class TestProduct{
         
         if(p1.getStockNumber() != 0 || p2.getStockNumber() != 1){
             numberOfFailures++;
-            System.err.println("Error Invalid stock number. expected: 0 1 provided: " + p1.getStockNumber() + p2.getStockNumber());
+            System.err.println("Error Invalid stock number\nexpected: 01 provided: " + p1.getStockNumber() + p2.getStockNumber());
         }
         if (p1.getPrice() != price){
             numberOfFailures++;
-            System.err.println("Error Invalid price. expected: " + price + " provided: " + p1.getPrice());
+            System.err.println("Error Invalid price\nexpected: " + price + " provided: " + p1.getPrice());
         }
         if (!p1.toString().equals(stringTest)){
             numberOfFailures++;
-            System.err.println("Error Invalid string. expected:\n" + stringTest + "\nprovided:\n" + p1.toString());
+            System.err.println("Error Invalid string\nexpected:\n" + stringTest + "\nprovided:\n" + p1.toString());
         }
         try{
             Product p3 = new Product("Test Product 3", -7090);
@@ -26,11 +27,7 @@ public class TestProduct{
             System.err.println("Error negative price provided");
             numberOfFailures++;
         }
-        return numberOfFailures;
-    }
-    public static void main(String[] args)
-    {
-        int numberOfFailures = regressionTest();
+
         System.out.println(numberOfFailures);
         System.exit(numberOfFailures);
     }
