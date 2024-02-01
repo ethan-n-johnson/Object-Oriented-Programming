@@ -9,8 +9,9 @@ public class Customer {
         }
     }
     @Override
-    public String toString() {
-        return name + "(" + email ")";
+    public String toString(){
+        String formattedString = String.format("%s (%s)", name, email);
+        return formattedString;
     }
     private String name;
     private String email;
