@@ -1,3 +1,6 @@
+package test;
+import store.Item;
+import store.Product;
 public class TestItem{
     public static void main(String[] args)
     {
@@ -7,8 +10,8 @@ public class TestItem{
         double totalPrice = price*quantity/100.00;
 
         String testProduct = "Test Product 1";
-        Product p1 = new Product("Test Product 1", price);
-        Item i1 = new Item(p1, quantity);
+        store.Product p1 = new store.Product("Test Product 1", price);
+        store.Item i1 = new store.Item(p1, quantity);
         String stringTest = String.format("%-30s $%8.2f", testProduct, price / 100.00);
         String itemTest = String.format("%3d %-30s $%8.2f", quantity, p1.toString(), totalPrice);
         

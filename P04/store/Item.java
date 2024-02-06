@@ -1,3 +1,4 @@
+package store;
 public class Item {
     public Item(Product product, int quantity){
         this.product = product;

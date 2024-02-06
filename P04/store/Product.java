@@ -1,3 +1,4 @@
+package store;
 public class Product {
     public Product(String name, int price){
         if(price < 0){

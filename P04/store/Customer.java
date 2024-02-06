@@ -1,3 +1,4 @@
+package store;
 public class Customer {
     public Customer(String name, String email){
         this.name = name;
