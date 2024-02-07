@@ -1,6 +1,6 @@
-package.store
+package.store;
 public class Tool extends Product(){
-    public Tool(String name, double price){
+    public Tool(String name, int price){
         super(name, price);
     }
 }
