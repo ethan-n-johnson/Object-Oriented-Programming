@@ -12,7 +12,7 @@ public class Order{
 
     /**
      * Constructs the order object.
-     * @param Customer The customer attached to the order
+     * @param customer The customer attached to the order
      * @since Version 0.2
     */
     public Order(Customer customer){
@@ -22,7 +22,7 @@ public class Order{
     }
     /**
      * Adds an item to the order.
-     * @param Item The item added to the order.
+     * @param item The item added to the order.
      * @since Version 0.2
     */
     public void addItem(Item item){
