@@ -1,11 +1,12 @@
+package store;
+import java.util.ArrayList;
+
 /**
  * Defining an order placed by a customer.
  * @author Ethan Johnson
  * @version 0.2
  * @since Version 0.2
 */
-package store;
-import java.util.ArrayList;
 
 public class Order{
 
