@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * @author Ethan Johnson
  * @version 0.2
  * @since Version 0.2
+ * @license.agreement Public Domain
 */
 
 public class Order{
@@ -52,11 +53,11 @@ public class Order{
         for(Item item : items){
             sb.append(item).append("\n");
         }
-        sb.append("Order total $   ").append(getPrice());
+        sb.append("Order total $  ").append(getPrice()/100.00);
         return sb.toString();
     }
     private Customer customer;
     private ArrayList<Item> items;
     private int orderNumber;
-    private static int nextOrderNumber = 0;
+    private static int nextOrderNumber = 1;
 }

@@ -1,5 +1,11 @@
 package test;
-import store.*;
+import store.Customer;
+import store.Exposure;
+import store.Item;
+import store.Order;
+import store.Plant;
+import store.Product;
+import store.Tool;
 
 public class TestOutput {
     public static void main(String[] args) {
