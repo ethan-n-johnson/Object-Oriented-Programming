@@ -1,6 +1,6 @@
 package test;
-import store.Item;
-import store.Product;
+import store.*;
+
 public class TestItem{
     public static void main(String[] args)
     {
@@ -9,11 +9,10 @@ public class TestItem{
         int quantity = 5;
         double totalPrice = price*quantity/100.00;
 
-        String testProduct = "Test Product 1";
-        store.Product p1 = new store.Product("Test Product 1", price);
-        store.Item i1 = new store.Item(p1, quantity);
-        String stringTest = String.format("%-30s $%8.2f", testProduct, price / 100.00);
-        String itemTest = String.format("%3d %-30s $%8.2f", quantity, p1.toString(), totalPrice);
+        String testItem = "Test Tool 1";
+        store.Tool t1 = new store.Tool("Test Tool 1", price);
+        store.Item i1 = new store.Item(t1, quantity);
+        String itemTest = String.format("%3d %-30s $%8.2f", quantity, testItem, totalPrice);
         
         if (i1.getPrice()/100.00 != totalPrice){
             failureCode = failureCode+1;

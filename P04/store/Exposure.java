@@ -1,21 +1,15 @@
-package.store;
-public enum Exposure(){
-    SHADE{
-        @Override
-        public String toString(){
-            return "full shade";
+package store;
+
+public enum Exposure {
+    SUN, PARTSUN, SHADE;
+
+    @Override
+    public String toString() {
+        switch (this) {
+            case SUN: return "full sun";
+            case PARTSUN: return "part sun";
+            case SHADE: return "full shade";
         }
-    };
-    PARTSUN{
-        @Override
-        public String toString(){
-            return "part sun";
-        }
-    };
-    SUN{
-        @Override
-        public String toString(){
-            return "full sun";
-        }
-    };
+        return "Error exposure invalid";
+    }
 }

@@ -1,7 +1,6 @@
 package test;
-import store.Product;
-import store.Customer;
-import store.Item;
+import store.*;
+
 public class TestOutput {
     public static void main(String[] args) {
         try {
@@ -13,10 +12,10 @@ public class TestOutput {
             System.out.println("Famous customers include\n  "
                              + c1 + "\n  " + c2 + "\n  "+ c3 + "\n  " + c4);
 
-            store.Product p1 = new store.Product("Cactus Cereus Peruvianus", 4990);
-            store.Product p2 = new store.Product("'White Princess' Philodendron", 5500);
-            store.Product p3 = new store.Product("6 inch English Lavender", 2909);
-            store.Product p4 = new store.Product("'Hayi' Rhaphidophora", 3299);
+            store.Plant p1 = new store.Plant("Cactus Cereus Peruvianus", 4990, Exposure.SHADE);
+            store.Plant p2 = new store.Plant("'White Princess' Philodendron", 5500, Exposure.SUN);
+            store.Plant p3 = new store.Plant("6 inch English Lavender", 2909, Exposure.PARTSUN);
+            store.Plant p4 = new store.Plant("'Hayi' Rhaphidophora", 3299, Exposure.SHADE);
 
             System.out.println("Our best plants include:\n  "
                              + p1 + "\n  " + p2 + "\n  "+ p3 + "\n  " + p4);

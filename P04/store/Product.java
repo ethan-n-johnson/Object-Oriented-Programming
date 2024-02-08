@@ -1,6 +1,6 @@
 package store;
-abstract class Product {
-    public abstract Product(String name, int price){
+public abstract class Product {
+    public Product(String name, int price){
         if(price < 0){
             throw new IllegalArgumentException("Invalid price of " + name + ": " + price);
         }

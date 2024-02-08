@@ -1,5 +1,6 @@
 package test;
-import store.Customer;
+import store.*;
+
 public class TestCustomer{
     public static void main(String[] args)
     {

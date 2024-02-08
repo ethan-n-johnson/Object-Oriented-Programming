@@ -1,21 +1,28 @@
-package.store;
+package store;
+import java.util.ArrayList;
+
 public class Order{
-    public class Order(Customer customer){
+    public Order(Customer customer){
         this.orderNumber = nextOrderNumber++;
         this.customer = customer;
+        this.items = new ArrayList<Item>();
     }
-    public class AddItem(Item item){
-        items = ArrayList.add(item);
+    public void addItem(Item item){
+        items.add(item);
     }
     public int getPrice(){
-        return customer.price;
+        int totalPrice = 0;
+        for(Item item : items){
+            totalPrice += item.getPrice();
+        }
+        return totalPrice;
     }
     @Override
     public String toString(){
-        
+        return "Test";
     }
     private Customer customer;
     private ArrayList<Item> items;
     private int orderNumber;
-    private int static nextOrderNumber = 0;
+    private static int nextOrderNumber = 0;
 }
