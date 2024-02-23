@@ -1,55 +1,55 @@
-public class Controller{
+// public class Controller{
 
-    public Controller(String storeName){
-        storeName = store
-    }
-    public mdi()
-    {
+//     public Controller(String storeName){
+//         // storeName = store;
+//     }
+//     public void mdi()
+//     {
 
-    }
-    private exit()
-    {
+//     }
+//     private void exit()
+//     {
 
-    }
-    private placeOrder()
-    {
+//     }
+//     private void placeOrder()
+//     {
 
-    }
-    private newCustomer(){
+//     }
+//     private void newCustomer(){
 
-    }
-    private newTool(){
+//     }
+//     private void newTool(){
 
-    }
-    private newPlant(){
+//     }
+//     private void newPlant(){
 
-    }
-    private switchView(){
+//     }
+//     private void switchView(){
 
-    }
-    private String getView(){
+//     }
+//     private String getView(){
 
-    }
-    private Integer selectFromMenu(){
+//     }
+//     private Integer selectFromMenu(){
 
-    }
-    private print(String s){
+//     }
+//     private void print(String s){
 
-    }
-    private getString(String prompt){
+//     }
+//     private void getString(String prompt){
 
-    }
-    private Integer getInt(String prompt){
+//     }
+//     private Integer getInt(String prompt){
 
-    }
-    private Double getDouble(String prompt){
+//     }
+//     private Double getDouble(String prompt){
         
-    }
+//     }
 
-    private Store store;
-    private View view;
-    private Menu mainMenu;
-    private String output;
-    private boolean isRunning;
-    private Scanner in;
-}
+//     private Store store;
+//     private View view;
+//     private Menu mainMenu;
+//     private String output;
+//     private boolean isRunning;
+//     private Scanner in;
+// }
