@@ -32,25 +32,23 @@ public class Controller{
         store.getCustomerList();
         System.out.println("What is your customer number?\n>");
         int customerIndex = getInt("Select customer\n>") - 1;
-        if(customerIndex < 0 || customerIndex >= store.customers.size()) {
+        if(customerIndex < 0) {
             System.out.println("Invalid customer selection.\nPlease try again\n");
             placeOrder();
         }
-        Customer customer = customers.get(customerIndex);
-        Order order = store.newOrder(customer);
-        orderNumber++;
+        int orderNumber = store.newOrder(customerIndex);
         System.out.println("Product List:");
         store.getProductList();
         int productIndex = 0;
         while(productIndex != -1){
             productIndex = getInt("Select product (0 to quit)\n>") - 1;
-            while (productIndex < 0 || productIndex >= store.products.size()) {
+            while (productIndex < 0){
                 if(productIndex == -1) break;
                 System.out.println("Invalid product selection.");
                 productIndex = getInt("Select product (0 to quit)\n>") - 1;
             }
         }
-        int quantity = getInt("Enter quantity for " + product.getName() + ": ");
+        int quantity = getInt("Enter quantity for\n>");
         store.addToOrder(orderNumber, productIndex, quantity);
         output = "Order placed successfully.";
         view = View.ORDERS;
@@ -166,6 +164,5 @@ public class Controller{
     private String output;
     private boolean isRunning;
     private Scanner in;
-    private static int orderNumber = 0;
     private static final String clearscreen = "\n".repeat(255);
 }

@@ -10,7 +10,8 @@ public class Store{
     public String getName(){
         return name;
     }
-    public void addCustomer(Customer customer){
+    // Format for ints
+    public void addCustomer(int customer){
         customers.add(customer);
     }
     public String getCustomerList(){
@@ -20,6 +21,7 @@ public class Store{
         }
         return customerList.toString();
     }
+    // Format for ints
     public void addProduct(Product product){
         products.add(product);
     }
