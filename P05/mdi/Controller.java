@@ -1,4 +1,4 @@
-package mdi;
+package store;
 import java.util.Scanner;
 public class Controller{
 
@@ -37,7 +37,7 @@ public class Controller{
             System.out.println("Invalid customer selection.\nPlease try again\n");
             placeOrder();
         }
-        Customer customer = customers.get(customerIndex)
+        Customer customer = customers.get(customerIndex);
         Order order = store.newOrder(customer);
         System.out.println("Product List:");
         store.getProductList();
@@ -57,16 +57,16 @@ public class Controller{
         view = View.ORDERS;
     }
     private void newCustomer(){
-        System.out.println("Enter the name of the customer\n>")
+        System.out.println("Enter the name of the customer\n>");
         String customerName = getString();
-        System.out.println("Enter the email of the customer\n>")
+        System.out.println("Enter the email of the customer\n>");
         Customer customer = new Customer(customerName, getString());
         store.addCustomer(customer);
         output = "Customer added successfully";
         view = CUSTOMERS;
     }
     private void newTool(){
-        System.out.println("Enter the name of the tool\n>")
+        System.out.println("Enter the name of the tool\n>");
         String toolName = getString();
         System.out.println("Enter the price of the tool\n>");
         Tool tool = new Tool(toolName, getInt());
@@ -117,10 +117,12 @@ public class Controller{
         String s = null;
         while(true){
             try{
-                System.out.print(prompt)
+                System.out.print(prompt);
                 s = in.nextLine().trim();
                 break;
-            } catch(Exception e)
+            } catch(Exception e){
+                System.err.println("Invalid Input");
+            }
         }
         return s;
     }
@@ -132,7 +134,7 @@ public class Controller{
                 if(input != null && !input.isEmpty()) i = Integer.parseInt(input);
                 break;
             } catch(Exception e){
-                System.err.println(("Invalid Input"));
+                System.err.println("Invalid Input");
             }
         }
         return i;
@@ -142,10 +144,10 @@ public class Controller{
         while(true){
             try{
                 String input = getString(prompt);
-                if(input != null && !input.isEmpty()) d = Integer.parseDouble(input)
+                if(input != null && !input.isEmpty()) d = Integer.parseDouble(input);
                 break;
             } catch(Exception e){
-                System.err.println(("Invalid Input"));
+                System.err.println("Invalid Input");
             }
         }
         return d; 
