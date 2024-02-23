@@ -1,9 +1,10 @@
-package store;
+package mdi;
+import store.*;
 import java.util.Scanner;
 public class Controller{
     public Controller(String storeName){
         store = new Store(storeName);
-        menu = new Menu();
+        mainMenu = new Menu();
         this.view = View.CUSTOMERS; 
         this.mainMenu = createMainMenu();
         this.output = "";
