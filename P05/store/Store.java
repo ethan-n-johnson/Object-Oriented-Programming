@@ -51,33 +51,4 @@ public class Store{
     private ArrayList<Product> products;
     private ArrayList<Order> orders;
 
-    // Basic Test Remove Later
-    public static void main(String[] args) {
-        Store store = new Store("MyStore");
-
-        Customer customer1 = new Customer("Grover McDonald", "Grovers_farm@realemail.com");
-        Customer customer2 = new Customer("John Doe", "Johns_email@realemail.com");
-        store.addCustomer(customer1);
-        store.addCustomer(customer2);
-
-        Tool product1 = new Tool("Hammer", 1500);
-        Tool product2 = new Tool("Axe", 3000);
-        store.addProduct(product1);
-        store.addProduct(product2);
-
-        System.out.println("Customer List:");
-        System.out.println(store.getCustomerList());
-
-        System.out.println("Product List:");
-        System.out.println(store.getProductList());
-
-        int order1 = store.newOrder(customer1);
-        int order2 = store.newOrder(customer2);
-        store.addToOrder(order1, 0, 2);
-        store.addToOrder(order1, 1, 1);
-
-        store.addToOrder(order, 0, 2); 
-        store.addToOrder(order1, 1, 1);
-        System.out.println(store.getOrderList());
-    }
 }
