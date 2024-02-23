@@ -2,7 +2,8 @@ package store;
 import java.util.Scanner;
 public class Controller{
     public Controller(String storeName){
-        this.store.name = storeName;
+        store = new Store(storeName);
+        menu = new Menu();
         this.view = View.CUSTOMERS; 
         this.mainMenu = createMainMenu();
         this.output = "";

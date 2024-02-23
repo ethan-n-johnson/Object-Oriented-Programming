@@ -10,8 +10,7 @@ public class Store{
     public String getName(){
         return name;
     }
-    // Format for ints
-    public void addCustomer(int customer){
+    public void addCustomer(Customer customer){
         customers.add(customer);
     }
     public String getCustomerList(){
@@ -21,7 +20,6 @@ public class Store{
         }
         return customerList.toString();
     }
-    // Format for ints
     public void addProduct(Product product){
         products.add(product);
     }
@@ -32,8 +30,8 @@ public class Store{
         }
         return productList.toString();
     } 
-    public int newOrder(Customer customer){
-        Order order = new Order(customer);
+    public int newOrder(int customer){
+        Order order = new Order(customers.get(customer));
         orders.add(order);
         return orders.indexOf(order);
     }
