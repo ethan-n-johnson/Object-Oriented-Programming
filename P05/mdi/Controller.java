@@ -1,9 +1,8 @@
 package store;
 import java.util.Scanner;
 public class Controller{
-
     public Controller(String storeName){
-        this.store = storeName;
+        this.store.name = storeName;
         this.view = View.CUSTOMERS; 
         this.mainMenu = createMainMenu();
         this.output = "";
@@ -33,57 +32,66 @@ public class Controller{
         store.getCustomerList();
         System.out.println("What is your customer number?\n>");
         int customerIndex = getInt("Select customer\n>") - 1;
-        if(customerIndex < 0 || customerIndex >= customers.size()) {
+        if(customerIndex < 0 || customerIndex >= store.customers.size()) {
             System.out.println("Invalid customer selection.\nPlease try again\n");
             placeOrder();
         }
         Customer customer = customers.get(customerIndex);
         Order order = store.newOrder(customer);
+        orderNumber++;
         System.out.println("Product List:");
         store.getProductList();
         int productIndex = 0;
         while(productIndex != -1){
             productIndex = getInt("Select product (0 to quit)\n>") - 1;
-            while (productIndex < 0 || productIndex >= products.size()) {
+            while (productIndex < 0 || productIndex >= store.products.size()) {
                 if(productIndex == -1) break;
                 System.out.println("Invalid product selection.");
                 productIndex = getInt("Select product (0 to quit)\n>") - 1;
             }
         }
-        Product product = products.get(productIndex);
         int quantity = getInt("Enter quantity for " + product.getName() + ": ");
-        store.addToOrder(order, product, quantity);
+        store.addToOrder(orderNumber, productIndex, quantity);
         output = "Order placed successfully.";
         view = View.ORDERS;
     }
     private void newCustomer(){
-        System.out.println("Enter the name of the customer\n>");
-        String customerName = getString();
-        System.out.println("Enter the email of the customer\n>");
-        Customer customer = new Customer(customerName, getString());
+        Customer customer = new Customer(getString("Enter the name of the customer\n>"), getString("Enter the email of the customer\n>"));
         store.addCustomer(customer);
         output = "Customer added successfully";
-        view = CUSTOMERS;
+        view = view.CUSTOMERS;
     }
     private void newTool(){
-        System.out.println("Enter the name of the tool\n>");
-        String toolName = getString();
-        System.out.println("Enter the price of the tool\n>");
-        Tool tool = new Tool(toolName, getInt());
+        Tool tool = new Tool(getString("Enter the name of the tool\n>"), getInt("Enter the price of the tool\n>"));
         store.addProduct(tool);
         output = "Product added successfully";
-        view = PRODUCTS;
+        view = view.PRODUCTS;
     }
     private void newPlant(){
-        System.out.println("Enter the species of the plant\n>");
-        String plantSpecies = getString();
-        System.out.println("Enter the level of exposure (" + Exposure.values() + ")\n>");
-        Exposure exposure = getString();
-        System.out.println("Enter the price of the plant\n>");
-        Plant plant = new Plant(plantSpecies, getInt(), exposure);
+        boolean exposureNotAssigned = true;
+        Exposure exposure;
+        do{
+            switch(getInt("Enter the level of exposure (" + Exposure.values() + ")\n>")){
+                case 1:
+                    exposure = exposure.SUN;
+                    exposureNotAssigned = false;
+                    break;
+                case 2:
+                    exposure = exposure.PARTSUN;
+                    exposureNotAssigned = false;
+                    break;
+                case 3:
+                    exposure = exposure.SHADE;
+                    exposureNotAssigned = false;
+                    break;
+                default:
+                    System.out.println("Invalid Exposure");
+            }
+        } while(exposureNotAssigned);
+        Plant plant = new Plant(getString("Enter the species of the plant\n>"), getInt("Enter the price of the plant\n>"), exposure);
         store.addProduct(plant);
         output = "Product added successfully";
-        view = PRODUCTS;
+        view = view.PRODUCTS;
     }
     private void switchView(){
         getString("Select a view (CUSTOMERS, PRODUCTS, or ORDERS)\n>");
@@ -91,18 +99,18 @@ public class Controller{
     private String getView(){
         switch(view){
             case CUSTOMERS:
-                getCustomerList();
+                store.getCustomerList();
                 break;
             case PRODUCTS:
-                getProductList();
+                store.getProductList();
                 break;
             case ORDERS:
-                getOrderList();
+                store.getOrderList();
                 break; 
         }
     }
     private Integer selectFromMenu(){
-        System.out.println(clearscreen + store.name + "\n");
+        System.out.println(clearscreen + store.getName() + "\n");
         System.out.println("Main Menu");
         System.out.println("Current View: " + view);
         getView();
@@ -144,7 +152,7 @@ public class Controller{
         while(true){
             try{
                 String input = getString(prompt);
-                if(input != null && !input.isEmpty()) d = Integer.parseDouble(input);
+                if(input != null && !input.isEmpty()) d = Double.parseDouble(input);
                 break;
             } catch(Exception e){
                 System.err.println("Invalid Input");
@@ -152,12 +160,12 @@ public class Controller{
         }
         return d; 
     }
-
     private Store store;
     private View view;
     private Menu mainMenu;
     private String output;
     private boolean isRunning;
     private Scanner in;
+    private static int orderNumber = 0;
     private static final String clearscreen = "\n".repeat(255);
 }
