@@ -9,24 +9,12 @@ public class Controller{
         this.output = "";
         this.isRunning = true;
         this.in = new Scanner(System.in);
-
-        Customer c1 = new Customer("Prof Rice", "george.rice@uta.edu");
-        Customer c2 = new Customer("President Joe Biden", "president@whitehouse.gov");
-        Customer c3 = new Customer("The Late Queen Elizabeth II", "queen@royal.gov.uk");
-        Customer c4 = new Customer("Mark Zuckerberg", "mark.zuckerberg@facebook.com");
-        
-        store.addCustomer(c1);
-        store.addCustomer(c2);
-        store.addCustomer(c3);
-        store.addCustomer(c4);
     }
     public void mdi()
     {
         while(isRunning){
             try{
-                Integer i = selectFromMenu();
-                if(i == null) continue;
-                mainMenu.run(i);
+                mainMenu.run(selectFromMenu());
 
             } catch(Exception e){
                 System.err.println("Invalid Input");
@@ -39,7 +27,7 @@ public class Controller{
     }
     private void placeOrder()
     {
-        System.out.println("Customer List:");
+        System.out.println("Placing an Order\n----------------\n\n\n");
         store.getCustomerList();
         System.out.println("What is your customer number?\n> ");
         int customerIndex = getInt("Select customer\n> ") - 1;
@@ -100,7 +88,7 @@ public class Controller{
         Plant plant = new Plant(getString("Enter the species of the plant\n> "), getInt("Enter the price of the plant\n> "), exposure);
         store.addProduct(plant);
         output = "Product added successfully";
-        view = view.PRODUCTS;
+        view = View.PRODUCTS;
     }
     private void switchView(){
         getString("Select a view (CUSTOMERS, PRODUCTS, or ORDERS)\n> ");
@@ -120,9 +108,7 @@ public class Controller{
         return "Invalid View";
     }
     private Integer selectFromMenu(){
-        System.out.println(clearscreen + store.getName() + "\n");
-        System.out.println("Main Menu");
-        System.out.println("Current View: " + view);
+        System.out.println(clearscreen + store.getName() + " Main Menu\n"+ mainMenu);
         getView();
         System.out.println(output);
         output = "";
@@ -173,12 +159,12 @@ public class Controller{
 
     private Menu createMainMenu() {
         mainMenu = new Menu();
-        mainMenu.addMenuItem(new MenuItem("Exit", this::exit));
-        mainMenu.addMenuItem(new MenuItem("Place Order", this::placeOrder));
-        mainMenu.addMenuItem(new MenuItem("Welcome new Customer", this::newCustomer));
-        mainMenu.addMenuItem(new MenuItem("Define new Tool", this::newTool));
-        mainMenu.addMenuItem(new MenuItem("Define new Plant", this::newPlant));
-        mainMenu.addMenuItem(new MenuItem("Switch View", this::switchView));
+        mainMenu.addMenuItem(new MenuItem("Exit", () -> exit()));
+        mainMenu.addMenuItem(new MenuItem("Place Order", () -> placeOrder()));
+        mainMenu.addMenuItem(new MenuItem("Welcome new Customer", () -> newCustomer()));
+        mainMenu.addMenuItem(new MenuItem("Define new Tool", () -> newTool()));
+        mainMenu.addMenuItem(new MenuItem("Define new Plant", () -> newPlant()));
+        mainMenu.addMenuItem(new MenuItem("Switch View", () -> switchView()));
         return mainMenu;
     }
 

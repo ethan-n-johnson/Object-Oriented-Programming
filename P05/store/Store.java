@@ -50,5 +50,4 @@ public class Store{
     private ArrayList<Customer> customers;
     private ArrayList<Product> products;
     private ArrayList<Order> orders;
-
 }
