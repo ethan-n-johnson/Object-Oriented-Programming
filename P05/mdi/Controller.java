@@ -27,7 +27,7 @@ public class Controller{
     }
     private void placeOrder()
     {
-        System.out.println("Placing an Order\n----------------\n\n\n");
+        System.out.println("\n\nPlacing an Order\n----------------\n");
         System.out.println(store.getCustomerList());
         int customerIndex = getInt("Which Customer?\n> ") - 1;
         if(customerIndex < 0) {
@@ -36,7 +36,7 @@ public class Controller{
         }
         int orderNumber = store.newOrder(customerIndex);
         System.out.println("Product List:");
-        System.out.println(store.getProductList());
+        System.out.print(store.getProductList());
         int productIndex = 0;
         while(productIndex != -1){
             productIndex = getInt("Select product (0 to quit)\n> ") - 1;
@@ -96,18 +96,40 @@ public class Controller{
         view = View.PRODUCTS;
     }
     private void switchView(){
-        getString("Select a view (CUSTOMERS, PRODUCTS, or ORDERS)\n> ");
+        boolean viewNotAssigned = true;
+        System.out.println("Switching View\n--------------\n");
+        System.out.println("1] Customers");
+        System.out.println("2] Orders");
+        System.out.println("3] Products\n");
+        do{
+            switch(getInt("Select an option\n> ");){
+                case 1:
+                    View = View.CUSTOMERS;
+                    viewNotAssigned = false;
+                    break;
+                case 2:
+                    View = View.PRODUCTS;
+                    viewNotAssigned = false;
+                    break;
+                case 3:
+                    view = View.ORDERS;
+                    viewNotAssigned = false;
+                    break;
+                default:
+                    System.out.println("Invalid View");
+            }
+        } while(viewNotAssigned);
     }
     private String getView(){
         switch(view){
             case CUSTOMERS:
-                System.out.println(store.getCustomerList());
+                System.out.print(store.getCustomerList());
                 break;
             case PRODUCTS:
-                System.out.println(store.getProductList());
+                System.out.print(store.getProductList());
                 break;
             case ORDERS:
-                System.out.println(store.getOrderList());
+                System.out.print(store.getOrderList());
                 break; 
         }
         return "Invalid View";

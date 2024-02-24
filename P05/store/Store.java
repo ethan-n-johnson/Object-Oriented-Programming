@@ -16,7 +16,7 @@ public class Store{
     public String getCustomerList(){
         StringBuilder customerList = new StringBuilder();
         for(int i = 0; i < customers.size(); i++){
-            customerList.append(i+1).append(": ").append(customers.get(i)).append("\n");
+            customerList.append("   ").append(i+1).append(": ").append(customers.get(i)).append("\n");
         }
         return customerList.toString();
     }
@@ -26,7 +26,7 @@ public class Store{
     public String getProductList(){
         StringBuilder productList = new StringBuilder();
         for(int i = 0; i < products.size(); i++){
-            productList.append(i+1).append(": ").append(products.get(i)).append("\n");
+            productList.append("   ").append(i+1).append(": ").append(products.get(i)).append("\n");
         }
         return productList.toString();
     } 
@@ -42,7 +42,7 @@ public class Store{
     public String getOrderList(){
         StringBuilder orderList = new StringBuilder();
         for(int i = 0; i < orders.size(); i++){
-            orderList.append(i+1).append(": ").append(orders.get(i)).append("\n");
+            orderList.append(orders.get(i)).append("\n\n");
         }
         return orderList.toString();
     }

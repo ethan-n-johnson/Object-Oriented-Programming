@@ -49,7 +49,7 @@ public class Order{
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("Order # ").append(orderNumber).append(" for ").append(customer.toString()).append("\n");
+        sb.append("Order #").append(orderNumber).append(" for ").append(customer.toString()).append("\n");
         for(Item item : items){
             sb.append(item).append("\n");
         }
