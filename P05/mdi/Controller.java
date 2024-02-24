@@ -27,7 +27,8 @@ public class Controller{
     }
     private void placeOrder()
     {
-        System.out.println("\n\nPlacing an Order\n----------------\n");
+        System.out.println("\n");
+        System.out.println("Placing an Order\n----------------\n");
         System.out.println(store.getCustomerList());
         int customerIndex = getInt("Which Customer?\n> ") - 1;
         if(customerIndex < 0) {
@@ -35,22 +36,27 @@ public class Controller{
             placeOrder();
         }
         int orderNumber = store.newOrder(customerIndex);
-        System.out.println("Product List:");
-        System.out.print(store.getProductList());
         int productIndex = 0;
         while(productIndex != -1){
+            System.out.println("Product List:");
+            System.out.print(store.getProductList());
             productIndex = getInt("Select product (0 to quit)\n> ") - 1;
             if(productIndex < -1) System.out.println("Invalid product selection.");
             else if(productIndex == -1){}
             else{
-                int quantity = getInt("Enter quantity\n> ");
-                store.addToOrder(orderNumber, productIndex, quantity);
+                int quantity = 0;
+                do{
+                    quantity = getInt("Enter quantity (0 to select a different product)\n> ");
+                    if(quantity == 0) break;
+                    store.addToOrder(orderNumber, productIndex, quantity);
+                } while(quantity < 1);
             }
         }
         output = "Order placed successfully.";
         view = View.ORDERS;
     }
     private void newCustomer(){
+        System.out.println("\n");
         String customerName = getString("Enter the name of the customer\n> ");
         String customerEmail = getString("Enter the email of the customer\n> ");
         Customer customer = new Customer(customerName, customerEmail);
@@ -59,6 +65,7 @@ public class Controller{
         view = View.CUSTOMERS;
     }
     private void newTool(){
+        System.out.println("\n");
         String toolName = getString("Enter the name of the tool\n> ");
         int toolPrice = getInt("Enter the price of the tool\n> ");
         Tool tool = new Tool(toolName, toolPrice);
@@ -67,12 +74,19 @@ public class Controller{
         view = view.PRODUCTS;
     }
     private void newPlant(){
+        System.out.println("\n");
         String plantSpecies = getString("Enter the species of the plant\n> ");
         int plantPrice = getInt("Enter the price of the plant\n> ");
+        System.out.println("");
         boolean exposureNotAssigned = true;
         Exposure exposure = Exposure.SUN;
+        int i = 1;
+        for(Exposure exposureLoop : exposure.values()){
+            System.out.println(i+"] " + exposureLoop.toString());
+            i++;
+        }
         do{
-            switch(getInt("Enter the level of exposure (" + Exposure.values() + ")\n> ")){
+            switch(getInt("\nSelect an option\n> ")){
                 case 1:
                     exposure = Exposure.SUN;
                     exposureNotAssigned = false;
@@ -97,12 +111,15 @@ public class Controller{
     }
     private void switchView(){
         boolean viewNotAssigned = true;
-        System.out.println("\n\nSwitching View\n--------------\n");
-        System.out.println("1] Customers");
-        System.out.println("2] Orders");
-        System.out.println("3] Products\n");
+        System.out.println("\n");
+        System.out.println("Switching View\n--------------\n");
+        int i = 1;
+        for(View view : view.values()){
+            System.out.println(i+"] " + view.toString());
+            i++;
+        }
         do{
-            switch(getInt("Select an option\n> ")){
+            switch(getInt("\nSelect an option\n> ")){
                 case 1:
                     view = View.CUSTOMERS;
                     viewNotAssigned = false;
@@ -137,7 +154,7 @@ public class Controller{
     private Integer selectFromMenu(){
         System.out.println(clearscreen + store.getName() + " Main Menu\n"+ mainMenu);
         getView();
-        System.out.println(output);
+        if(!output.equals("")) System.out.println(output);
         output = "";
         return getInt("Select an option\n> ");
     }

@@ -41,6 +41,14 @@ public abstract class Product {
         return price;   
     }
     /**
+     * Provides the name of the product.
+     * @return Returns the name of the product.
+     * @since Version 0.3
+    */
+    public String getName() {
+        return name;
+    }
+    /**
      * Provides a string representation of the product with formatting.
      * @return Returns a string representation of the product.
      * @since Version 0.2
@@ -48,7 +56,7 @@ public abstract class Product {
     @Override
     public String toString(){
         double priceInDollars = price/100.00;
-        String formattedProduct = String.format("%-30s $%8.2f", name, priceInDollars);
+        String formattedProduct = String.format("%-40s $%8.2f", name, priceInDollars);
         return formattedProduct;
     }
 

@@ -19,13 +19,24 @@ public class Plant extends Product{
         super(species, price);
         this.exposure = exposure;
     }
-        /**
+    /**
      * Gets the level of exposure the plant needs.
      * @return Returns the level of exposure.
      * @since Version 0.2
     */
     public Exposure getExposure(){
         return exposure;
+    }
+    /**
+     * Provides a string representation of the plant with formatting.
+     * @return Returns a string representation of the plant.
+     * @since Version 0.3
+    */
+    @Override
+    public String toString(){
+        double priceInDollars = getPrice() / 100.00;
+        String formattedPlant = String.format("%-40s $%8.2f", "Plant: " + getName(), priceInDollars);
+        return formattedPlant;
     }
     private Exposure exposure;   
 }

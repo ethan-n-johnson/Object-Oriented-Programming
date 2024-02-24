@@ -18,6 +18,7 @@ public class Store{
         for(int i = 0; i < customers.size(); i++){
             customerList.append("   ").append(i+1).append(": ").append(customers.get(i)).append("\n");
         }
+        customerList.append("\n");
         return customerList.toString();
     }
     public void addProduct(Product product){
@@ -28,6 +29,7 @@ public class Store{
         for(int i = 0; i < products.size(); i++){
             productList.append("   ").append(i+1).append(": ").append(products.get(i)).append("\n");
         }
+        productList.append("\n");
         return productList.toString();
     } 
     public int newOrder(int customer){

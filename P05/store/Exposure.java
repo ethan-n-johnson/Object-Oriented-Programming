@@ -18,9 +18,9 @@ public enum Exposure {
     @Override
     public String toString() {
         switch (this) {
-            case SUN: return "full sun";
-            case PARTSUN: return "part sun";
-            case SHADE: return "full shade";
+            case SUN: return "Full Sun";
+            case PARTSUN: return "Part Sun";
+            case SHADE: return "Full Shade";
         }
         return "Error exposure invalid";
     }
