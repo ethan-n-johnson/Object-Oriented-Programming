@@ -97,22 +97,22 @@ public class Controller{
     }
     private void switchView(){
         boolean viewNotAssigned = true;
-        System.out.println("Switching View\n--------------\n");
+        System.out.println("\n\nSwitching View\n--------------\n");
         System.out.println("1] Customers");
         System.out.println("2] Orders");
         System.out.println("3] Products\n");
         do{
-            switch(getInt("Select an option\n> ");){
+            switch(getInt("Select an option\n> ")){
                 case 1:
-                    View = View.CUSTOMERS;
+                    view = View.CUSTOMERS;
                     viewNotAssigned = false;
                     break;
                 case 2:
-                    View = View.PRODUCTS;
+                    view = View.ORDERS;
                     viewNotAssigned = false;
                     break;
                 case 3:
-                    view = View.ORDERS;
+                    view = View.PRODUCTS;
                     viewNotAssigned = false;
                     break;
                 default:
