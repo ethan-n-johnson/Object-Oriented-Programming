@@ -28,43 +28,47 @@ public class Controller{
     private void placeOrder()
     {
         System.out.println("Placing an Order\n----------------\n\n\n");
-        store.getCustomerList();
-        System.out.println("What is your customer number?\n> ");
-        int customerIndex = getInt("Select customer\n> ") - 1;
+        System.out.println(store.getCustomerList());
+        int customerIndex = getInt("Which Customer?\n> ") - 1;
         if(customerIndex < 0) {
             System.out.println("Invalid customer selection.\nPlease try again\n");
             placeOrder();
         }
         int orderNumber = store.newOrder(customerIndex);
         System.out.println("Product List:");
-        store.getProductList();
+        System.out.println(store.getProductList());
         int productIndex = 0;
         while(productIndex != -1){
             productIndex = getInt("Select product (0 to quit)\n> ") - 1;
-            while (productIndex < 0){
-                if(productIndex == -1) break;
-                System.out.println("Invalid product selection.");
-                productIndex = getInt("Select product (0 to quit)\n> ") - 1;
+            if(productIndex < -1) System.out.println("Invalid product selection.");
+            else if(productIndex == -1){}
+            else{
+                int quantity = getInt("Enter quantity\n> ");
+                store.addToOrder(orderNumber, productIndex, quantity);
             }
         }
-        int quantity = getInt("Enter quantity for\n> ");
-        store.addToOrder(orderNumber, productIndex, quantity);
         output = "Order placed successfully.";
         view = View.ORDERS;
     }
     private void newCustomer(){
-        Customer customer = new Customer(getString("Enter the name of the customer\n> "), getString("Enter the email of the customer\n> "));
+        String customerName = getString("Enter the name of the customer\n> ");
+        String customerEmail = getString("Enter the email of the customer\n> ");
+        Customer customer = new Customer(customerName, customerEmail);
         store.addCustomer(customer);
         output = "Customer added successfully";
-        view = view.CUSTOMERS;
+        view = View.CUSTOMERS;
     }
     private void newTool(){
-        Tool tool = new Tool(getString("Enter the name of the tool\n> "), getInt("Enter the price of the tool\n> "));
+        String toolName = getString("Enter the name of the tool\n> ");
+        int toolPrice = getInt("Enter the price of the tool\n> ");
+        Tool tool = new Tool(toolName, toolPrice);
         store.addProduct(tool);
         output = "Product added successfully";
         view = view.PRODUCTS;
     }
     private void newPlant(){
+        String plantSpecies = getString("Enter the species of the plant\n> ");
+        int plantPrice = getInt("Enter the price of the plant\n> ");
         boolean exposureNotAssigned = true;
         Exposure exposure = Exposure.SUN;
         do{
@@ -85,7 +89,8 @@ public class Controller{
                     System.out.println("Invalid Exposure");
             }
         } while(exposureNotAssigned);
-        Plant plant = new Plant(getString("Enter the species of the plant\n> "), getInt("Enter the price of the plant\n> "), exposure);
+        
+        Plant plant = new Plant(plantSpecies, plantPrice, exposure);
         store.addProduct(plant);
         output = "Product added successfully";
         view = View.PRODUCTS;
@@ -96,13 +101,13 @@ public class Controller{
     private String getView(){
         switch(view){
             case CUSTOMERS:
-                store.getCustomerList();
+                System.out.println(store.getCustomerList());
                 break;
             case PRODUCTS:
-                store.getProductList();
+                System.out.println(store.getProductList());
                 break;
             case ORDERS:
-                store.getOrderList();
+                System.out.println(store.getOrderList());
                 break; 
         }
         return "Invalid View";
@@ -166,6 +171,26 @@ public class Controller{
         mainMenu.addMenuItem(new MenuItem("Define new Plant", () -> newPlant()));
         mainMenu.addMenuItem(new MenuItem("Switch View", () -> switchView()));
         return mainMenu;
+    }
+
+    public void createTestStore() {
+        Customer c1 = new Customer("Prof Rice", "george.rice@uta.edu");
+        Customer c2 = new Customer("President Joe Biden", "president@whitehouse.gov");
+        Customer c3 = new Customer("The Late Queen Elizabeth II", "queen@royal.gov.uk");
+        Customer c4 = new Customer("Mark Zuckerberg", "mark.zuckerberg@facebook.com");
+        store.addCustomer(c1);
+        store.addCustomer(c2);
+        store.addCustomer(c3);
+        store.addCustomer(c4);
+
+        Plant p1 = new Plant("Cactus Cereus Peruvianus", 4990, Exposure.SHADE);
+        Plant p2 = new Plant("'White Princess' Philodendron", 5500, Exposure.SUN);
+        Tool t1 = new Tool("Bypass Pruners", 2299);
+        Tool t2 = new Tool("Large Gardener's Cart", 34900);
+        store.addProduct(p1);
+        store.addProduct(p2);
+        store.addProduct(t1);
+        store.addProduct(t2);
     }
 
     private Store store;
