@@ -1,6 +1,8 @@
 package store;
 
+import java.io.FileWriter
 import java.io.BufferedWriter
+import java.io.FileReader
 import java.io.BufferedReader
 import java.io.IOException
 /**
@@ -63,11 +65,11 @@ public abstract class Product {
         return formattedProduct;
     }
 
-    public void save(BufferedWriter bw)
-    {
-        String savedProduct = String.format("%s %d %d %d", name, price, stockNumber, nextStockNumber);
-        bw.BufferedWriter(savedProduct);
-    }
+    // public void save(BufferedWriter bw)
+    // {
+    //     String savedProduct = String.format("%s %d %d %d", name, price, stockNumber, nextStockNumber);
+    //     bw.BufferedWriter(savedProduct);
+    // }
 
     private static int nextStockNumber = 0;
     private int stockNumber;

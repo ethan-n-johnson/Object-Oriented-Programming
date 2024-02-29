@@ -1,5 +1,9 @@
 package store;
 
+import java.io.BufferedWriter
+import java.io.BufferedReader
+import java.io.IOException
+
 /**
  * Defining an order placed by a customer.
  * @author Ethan Johnson
@@ -21,6 +25,14 @@ public class Customer {
         }
         this.email = email;
     }
+    public Customer(BufferedReader br) throws IOException{
+        this.name = br.readLine();
+        String email = br.readLine();
+        if(!email.contains("@") || email.indexOf("@") >= email.lastIndexOf(".")){
+            throw new IllegalArgumentException("Invalid email address: " + email);
+        }
+        this.email = email;
+    }
     /**
      * Provides a string representation of the customer.
      * @return Returns the name and email of a string with formatting.
@@ -30,6 +42,10 @@ public class Customer {
     public String toString(){
         String formattedString = String.format("%s (%s)", name, email);
         return formattedString;
+    }
+    public void save(BufferedWriter bw) throws IOException{
+        bw.write( name + '\n');
+        bw.write(email + '\n');
     }
     private String name;
     private String email;

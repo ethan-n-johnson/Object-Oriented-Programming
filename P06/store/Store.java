@@ -1,11 +1,22 @@
 package store;
 import java.util.ArrayList;
+import java.io.BufferedWriter
+import java.io.BufferedReader
+import java.io.IOException
+
 public class Store{
     public Store(String name){
         this.name = name;
         this.customers = new ArrayList<>();
         this.products = new ArrayList<>();
         this.orders = new ArrayList<>();
+    }
+    public Store(BufferedReader br)
+    {
+        int numberOfCustomers = br.readLine();
+        for(int i = 0; i < numberOfCustomers; i++){
+            addCustomer(new Customer(br));
+        }
     }
     public String getName(){
         return name;
@@ -48,6 +59,13 @@ public class Store{
         }
         return orderList.toString();
     }
+    public void save(BufferedWriter bw){
+        bw.write("" + customers.size() '\n');
+        for(Customer c : customers){
+            bw.write(customer.toString() + '\n');
+        }
+    }
+
     private String name;
     private ArrayList<Customer> customers;
     private ArrayList<Product> products;

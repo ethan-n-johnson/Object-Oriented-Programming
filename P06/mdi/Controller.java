@@ -1,6 +1,13 @@
 package mdi;
+
 import store.*;
 import java.util.Scanner;
+import java.io.FileWriter
+import java.io.BufferedWriter
+import java.io.FileReader
+import java.io.BufferedReader
+import java.io.IOException
+
 public class Controller{
     public Controller(String storeName){
         this.store = new Store(storeName);
@@ -232,11 +239,24 @@ public class Controller{
         store.addProduct(t2);
     }
 
+    private void open(){
+        
+    }
+
+    private void save(){
+
+    }
+
+    private void saveAs(){
+
+    }
+
     private Store store;
     private View view;
     private Menu mainMenu;
     private String output;
     private boolean isRunning;
     private Scanner in;
+    private String fileName = "Store.info"
     private static final String clearscreen = "\n".repeat(255);
 }
