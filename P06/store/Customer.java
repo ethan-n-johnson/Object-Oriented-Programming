@@ -1,8 +1,8 @@
 package store;
 
-import java.io.BufferedWriter
-import java.io.BufferedReader
-import java.io.IOException
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 /**
  * Defining an order placed by a customer.
@@ -27,11 +27,11 @@ public class Customer {
     }
     public Customer(BufferedReader br) throws IOException{
         this.name = br.readLine();
-        String email = br.readLine();
-        if(!email.contains("@") || email.indexOf("@") >= email.lastIndexOf(".")){
-            throw new IllegalArgumentException("Invalid email address: " + email);
+        String emailTemp = br.readLine();
+        if(!emailTemp.contains("@") || emailTemp.indexOf("@") >= emailTemp.lastIndexOf(".")){
+            throw new IllegalArgumentException("Invalid email address: " + emailTemp);
         }
-        this.email = email;
+        this.email = emailTemp;
     }
     /**
      * Provides a string representation of the customer.

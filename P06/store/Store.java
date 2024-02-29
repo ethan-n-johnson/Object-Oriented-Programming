@@ -1,8 +1,8 @@
 package store;
 import java.util.ArrayList;
-import java.io.BufferedWriter
-import java.io.BufferedReader
-import java.io.IOException
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 public class Store{
     public Store(String name){
@@ -11,9 +11,12 @@ public class Store{
         this.products = new ArrayList<>();
         this.orders = new ArrayList<>();
     }
-    public Store(BufferedReader br)
-    {
-        int numberOfCustomers = br.readLine();
+    public Store(BufferedReader br) throws IOException{
+        this.name = "Manga Store (file)";
+        this.customers = new ArrayList<>();
+        this.products = new ArrayList<>();
+        this.orders = new ArrayList<>();
+        int numberOfCustomers =  Integer.parseInt(br.readLine());
         for(int i = 0; i < numberOfCustomers; i++){
             addCustomer(new Customer(br));
         }
@@ -59,10 +62,10 @@ public class Store{
         }
         return orderList.toString();
     }
-    public void save(BufferedWriter bw){
-        bw.write("" + customers.size() '\n');
+    public void save(BufferedWriter bw) throws IOException {
+        bw.write("" + customers.size() + '\n');
         for(Customer c : customers){
-            bw.write(customer.toString() + '\n');
+            c.save(bw);
         }
     }
 

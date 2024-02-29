@@ -2,11 +2,11 @@ package mdi;
 
 import store.*;
 import java.util.Scanner;
-import java.io.FileWriter
-import java.io.BufferedWriter
-import java.io.FileReader
-import java.io.BufferedReader
-import java.io.IOException
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 public class Controller{
     public Controller(String storeName){
@@ -207,7 +207,6 @@ public class Controller{
         }
         return d; 
     }
-
     private Menu createMainMenu() {
         mainMenu = new Menu();
         mainMenu.addMenuItem(new MenuItem("Exit", () -> exit()));
@@ -216,9 +215,11 @@ public class Controller{
         mainMenu.addMenuItem(new MenuItem("Define new Tool", () -> newTool()));
         mainMenu.addMenuItem(new MenuItem("Define new Plant", () -> newPlant()));
         mainMenu.addMenuItem(new MenuItem("Switch View", () -> switchView()));
+        mainMenu.addMenuItem(new MenuItem("Save store", () -> save()));
+        mainMenu.addMenuItem(new MenuItem("Save store as", () -> saveAs()));
+        mainMenu.addMenuItem(new MenuItem("Open store", () -> open()));
         return mainMenu;
     }
-
     public void createTestStore() {
         Customer c1 = new Customer("Prof Rice", "george.rice@uta.edu");
         Customer c2 = new Customer("President Joe Biden", "president@whitehouse.gov");
@@ -238,17 +239,33 @@ public class Controller{
         store.addProduct(t1);
         store.addProduct(t2);
     }
-
     private void open(){
-        
+        System.out.print("Enter a filename to open or load the existing file (" + filename + ") with Enter: ");
+        String s = in.nextLine();
+        if(!s.isEmpty()) filename = s;
+        try(BufferedReader br = new BufferedReader(new FileReader(filename))){
+            store = new Store(br);
+            System.out.println("Store successfully opened from file: " + filename);
+        } catch(Exception e){
+            System.out.println("file: " + filename + " failed to open: " + e);
+        }
     }
-
     private void save(){
-
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename)))
+        {
+            store.save(bw);
+            System.out.println("Saved store data to: " + filename);
+        } catch(Exception e){
+            System.err.println("file: " + filename + " failed to save store data: " + e);
+        }
     }
 
     private void saveAs(){
-
+        System.out.print("Enter a filename to save: ");
+        String s = in.nextLine();
+        if(s.isEmpty()) return;
+        filename = s;
+        save();
     }
 
     private Store store;
@@ -257,6 +274,6 @@ public class Controller{
     private String output;
     private boolean isRunning;
     private Scanner in;
-    private String fileName = "Store.info"
+    private String filename = "Store.data";
     private static final String clearscreen = "\n".repeat(255);
 }
