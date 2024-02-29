@@ -218,6 +218,7 @@ public class Controller{
         mainMenu.addMenuItem(new MenuItem("Save store", () -> save()));
         mainMenu.addMenuItem(new MenuItem("Save store as", () -> saveAs()));
         mainMenu.addMenuItem(new MenuItem("Open store", () -> open()));
+        mainMenu.addMenuItem(new MenuItem("Create Test Store", () -> createTestStore()));
         return mainMenu;
     }
     public void createTestStore() {

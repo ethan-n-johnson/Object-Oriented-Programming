@@ -1,4 +1,10 @@
 package store;
+
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
 /**
  * Defining an order placed by a customer.
  * @author Ethan Johnson
@@ -19,6 +25,10 @@ public class Plant extends Product{
         super(species, price);
         this.exposure = exposure;
     }
+    public Plant(BufferedReader br) throws IOException{
+        super(br);
+        this.exposure = Exposure.valueOf(br.readLine());
+    }
     /**
      * Gets the level of exposure the plant needs.
      * @return Returns the level of exposure.
@@ -37,6 +47,11 @@ public class Plant extends Product{
         double priceInDollars = getPrice() / 100.00;
         String formattedPlant = String.format("%-40s $%8.2f", "Plant: " + getName(), priceInDollars);
         return formattedPlant;
+    }
+    @Override
+    public void save(BufferedWriter bw) throws IOException{
+        super.save(bw);
+        bw.write("" + exposure.name() + '\n');
     }
     private Exposure exposure;   
 }

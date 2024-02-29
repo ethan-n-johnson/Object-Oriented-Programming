@@ -20,6 +20,12 @@ public class Store{
         for(int i = 0; i < numberOfCustomers; i++){
             addCustomer(new Customer(br));
         }
+        int numberOfProducts = Integer.parseInt(br.readLine());
+        for(int i = 0; i < numberOfProducts; i++){
+            String type = br.readLine();
+            if(type.equals("plant")) addProduct(new Plant(br));
+            else if(type.equals("tool")) addProduct(new Tool(br));
+        }
     }
     public String getName(){
         return name;
@@ -66,6 +72,12 @@ public class Store{
         bw.write("" + customers.size() + '\n');
         for(Customer c : customers){
             c.save(bw);
+        }
+        bw.write("" + products.size() + '\n');
+        for(Product p : products){
+            if(p instanceof Plant) bw.write("plant" + '\n');
+            else bw.write("tool" + '\n');
+            p.save(bw);
         }
     }
 

@@ -29,6 +29,19 @@ public abstract class Product {
             this.name = name;
         }
     }
+    public Product(BufferedReader br) throws IOException{
+        String nameTemp = br.readLine();
+        int priceTemp = Integer.parseInt(br.readLine());
+        if(priceTemp < 0){
+            throw new IllegalArgumentException("Invalid price of " + nameTemp + ": " + priceTemp);
+        }
+        else{
+            this.name = nameTemp;
+            this.price = priceTemp;
+            this.stockNumber = Integer.parseInt(br.readLine());
+            this.nextStockNumber = Integer.parseInt(br.readLine());
+        }
+    }
     /**
      * Provides the currect stock number.
      * @return Returns the current stock number.
@@ -64,12 +77,12 @@ public abstract class Product {
         String formattedProduct = String.format("%-40s $%8.2f", name, priceInDollars);
         return formattedProduct;
     }
-
-    // public void save(BufferedWriter bw)
-    // {
-    //     String savedProduct = String.format("%s %d %d %d", name, price, stockNumber, nextStockNumber);
-    //     bw.BufferedWriter(savedProduct);
-    // }
+    public void save(BufferedWriter bw) throws IOException{
+        bw.write(name + '\n');
+        bw.write("" + price + '\n');
+        bw.write("" + stockNumber  + '\n');
+        bw.write("" + nextStockNumber  + '\n');
+    }
 
     private static int nextStockNumber = 0;
     private int stockNumber;
