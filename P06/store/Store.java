@@ -24,7 +24,7 @@ public class Store{
         for(int i = 0; i < numberOfProducts; i++){
             String type = br.readLine();
             if(type.equals("plant")) addProduct(new Plant(br));
-            else if(type.equals("tool")) addProduct(new Tool(br));
+            else addProduct(new Tool(br));
         }
     }
     public String getName(){
