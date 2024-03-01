@@ -1,5 +1,7 @@
 package store;
-
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
 /**
  * Defining an order placed by a customer.
  * @author Ethan Johnson
@@ -19,6 +21,12 @@ public class Item {
         this.product = product;
         this.quantity = quantity;
     } 
+    public Item(BufferedReader br) throws IOException{
+        String type = br.readLine();
+        if(type.equals("store.Plant")) this.product = new Plant(br);
+        else if(type.equals("store.Tool")) this.product = new Tool(br);
+        this.quantity = Integer.parseInt(br.readLine());
+    }
     /**
      * Multiplies the product's price with the quantity.
      * @return Returns the total price of the Item
@@ -38,6 +46,10 @@ public class Item {
         double priceInDollars = getPrice()/100.00;
         String formattedItem = String.format("%3d %-30s $%8.2f", quantity, product.toString(), priceInDollars);
         return formattedItem;
+    }
+    public void save(BufferedWriter bw) throws IOException{
+        product.save(bw);
+        bw.write("" + quantity  + '\n');
     }
     private Product product;
     private int quantity;

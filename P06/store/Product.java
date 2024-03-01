@@ -78,6 +78,7 @@ public abstract class Product {
         return formattedProduct;
     }
     public void save(BufferedWriter bw) throws IOException{
+        bw.write(getClass().getName() + '\n');
         bw.write(name + '\n');
         bw.write("" + price + '\n');
         bw.write("" + stockNumber  + '\n');

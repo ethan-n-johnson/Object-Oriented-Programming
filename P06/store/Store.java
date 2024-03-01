@@ -23,8 +23,14 @@ public class Store{
         int numberOfProducts = Integer.parseInt(br.readLine());
         for(int i = 0; i < numberOfProducts; i++){
             String type = br.readLine();
-            if(type.equals("plant")) addProduct(new Plant(br));
-            else addProduct(new Tool(br));
+            if(type.equals("store.Plant")) addProduct(new Plant(br));
+            else if(type.equals("store.Tool")) addProduct(new Tool(br));
+            else System.err.println("Unknown product type");
+        }
+        int numberOfOrders = Integer.parseInt(br.readLine());
+        for(int i = 0; i < numberOfOrders; i++){
+            Order order = new Order(br);
+            orders.add(order);
         }
     }
     public String getName(){
@@ -75,9 +81,11 @@ public class Store{
         }
         bw.write("" + products.size() + '\n');
         for(Product p : products){
-            if(p instanceof Plant) bw.write("plant" + '\n');
-            else bw.write("tool" + '\n');
             p.save(bw);
+        }
+        bw.write("" + orders.size() + '\n');
+        for(Order o : orders){
+            o.save(bw);
         }
     }
 

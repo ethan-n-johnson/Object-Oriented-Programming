@@ -1,6 +1,8 @@
 package store;
 import java.util.ArrayList;
-
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
 /**
  * Defining an order placed by a customer.
  * @author Ethan Johnson
@@ -20,6 +22,16 @@ public class Order{
         this.orderNumber = nextOrderNumber++;
         this.customer = customer;
         this.items = new ArrayList<Item>();
+    }
+    public Order(BufferedReader br) throws IOException{
+        this.items = new ArrayList<Item>();
+        this.customer = new Customer(br);
+        int numberofItems = Integer.parseInt(br.readLine());
+        for(int i = 0; i < numberofItems; i++){
+            addItem(new Item(br));
+        }
+        this.orderNumber = Integer.parseInt(br.readLine());
+        this.nextOrderNumber = Integer.parseInt(br.readLine());
     }
     /**
      * Adds an item to the order.
@@ -56,6 +68,16 @@ public class Order{
         sb.append("Order total $  ").append(getPrice()/100.00);
         return sb.toString();
     }
+    public void save(BufferedWriter bw) throws IOException{
+        customer.save(bw);
+        bw.write("" + items.size() + '\n');
+        for(Item i : items){
+            i.save(bw);
+        }
+        bw.write("" + orderNumber + '\n');
+        bw.write("" + nextOrderNumber + '\n');
+    }
+
     private Customer customer;
     private ArrayList<Item> items;
     private int orderNumber;
