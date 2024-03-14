@@ -519,7 +519,7 @@ slow the program down because the time spent creating threads outweighs the bene
 
 QUESTION 4: Does adding more threads increase the "system load", or is it constant regardless of the number of threads?  Why?
 Yes, in this program adding more threads does increase system load because the more of the cpu's resources are being used. However, this is 
-only the case when the threads are not bounded by the IO. If they have to wait on the IO operations before they can run this can
+only the case when the threads do not have to wait on other things such as IO operations. If they have to wait before they can run this can
 lead to the system load being the constant regardless of the thread count.
 
 
