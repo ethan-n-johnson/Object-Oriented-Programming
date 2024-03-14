@@ -49,7 +49,7 @@ This will require some experimentation.
 20.5   27994469914805964713410
 */
 
-public class Factor {
+public class Factor{
     public static List<PrimeFactors> solutions = new ArrayList<>();
     public static String[] bigints = null; // From main's args
     public static int numThreads = 1; 
@@ -68,7 +68,27 @@ public class Factor {
         }
 
         // Factor all of the big integers
-        solve(0, 0, bigints.length); 
+        if (numThreads == 1) solve(numThreads, 0, bigints.length);
+        else{
+            int intsPerThread = bigints.length/numThreads;
+            int leftOver = bigints.length%numThreads;
+            int start = 0;
+            int end = intsPerThread;
+            Thread[] threads = new Thread[numThreads];
+            for(int i=0; i<numThreads; ++i){
+                if(i < leftOver) end++;
+                final int threadIndex = i;
+                final int startingInt = start;
+                final int endingInt = end;
+                threads[i] = new Thread(() -> solve(threadIndex, startingInt, endingInt));
+                threads[i].start();
+                start = end;
+                end += intsPerThread;
+            }
+            try {
+                for(Thread thread : threads) thread.join();
+            } catch(InterruptedException e) {System.err.println("Thread Interrupted " + e.toString());}
+        } 
 
         // Print all solutions
         for(PrimeFactors solution : solutions)
@@ -78,7 +98,7 @@ public class Factor {
     // Solve bigints[firstIndex] to bigints[lastIndex-1]
     // Add PrimeFactors solution objects to the solutions ArrayList
     // threadNumber will just identify threads with a loop counter, 0 to numThreads-1
-    public static void solve(int threadNumber, int firstIndex, int lastIndexPlusOne) {
+    public static synchronized void solve(int threadNumber, int firstIndex, int lastIndexPlusOne) {
         System.out.println("Thread " + threadNumber + " solving " 
                          + firstIndex + "-" + (lastIndexPlusOne-1));
         for(int i=firstIndex; i<lastIndexPlusOne; ++i) {
