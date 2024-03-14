@@ -508,7 +508,8 @@ sys     0m0.000s
 
 
 QUESTION 3: Does adding more threads continue to speed up the program? Do more threads ever slow down the program slightly?  Why or why not?
-
+Yes, adding more threads increases the speed of the program to a point of peak performance. After peak performance the threads start to 
+slow the program down because the time spent creating threads outweighs the benefit of the extra threads.
 
 
 
@@ -517,7 +518,9 @@ QUESTION 3: Does adding more threads continue to speed up the program? Do more t
 
 
 QUESTION 4: Does adding more threads increase the "system load", or is it constant regardless of the number of threads?  Why?
-
+Yes, in this program adding more threads does increase system load because the more of the cpu's resources are being used. However, this is 
+only the case when the threads are not bounded by the IO. If they have to wait on the IO operations before they can run this can
+lead to the system load being the constant regardless of the thread count.
 
 
 
