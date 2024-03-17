@@ -101,7 +101,7 @@ public class Factor{
             }
         }
     }
-    public static int nextBigIntIndex() {
+    public static synchronized int nextBigIntIndex() {
         if (nextBigInt < bigints.length) {
             return nextBigInt+1;
         }
@@ -109,7 +109,7 @@ public class Factor{
             return -1;
         }
     }
-    public static synchronized void worker(int threadNumber) {
+    public static void worker(int threadNumber) {
         while (nextBigIntIndex() != -1) {
             solve(threadNumber, nextBigInt, nextBigIntIndex());
             nextBigInt++;
