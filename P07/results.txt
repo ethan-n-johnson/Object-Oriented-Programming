@@ -10,6 +10,8 @@ FULL CREDIT
 
 NOTE: These are measurements which may vary plus your opinions which may vary a LOT. We won't grade for "correctness", just completeness.
 
+NOTE: Due to a bug in git bash it appears my sys and user time always appear 0.
+
 QUESTION 1: What Factor command line arguments did you use to achieve a 30 to 60 second runtime? Note: We're only interested in the "real" seconds for this question.
 time java Factor 1 409691109030485036291142 12341983591308976832 12341983591308976837 204889445540633809438884
 2633022111220424607114 3810102159721699814 149003965211066359426480 478713804955782741640 140136045666459146415
