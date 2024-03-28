@@ -1,8 +1,8 @@
 CXXFLAGS += --std=c++17
 
-odds: odds.cpp
-    -$(CXX) $(CXXFLAGS) odds.cpp -o odds
-
-
+odds: odds.o
+	$(CXX) $(CXXFLAGS) -o odds odds.o
+odds.o: odds.cpp
+	$(CXX) $(CXXFLAGS) -c odds.cpp
 clean:
-    rm -f *.o *.gch *~ a.out odds
+	rm -f *.o *.gch *~ a.out odds
