@@ -5,11 +5,11 @@ int main(int argc, char* argv[]){
     std::vector<double> coefficients;
     Polynomial *p = nullptr; 
     if(argc == 3){
-        std::vector<double> coefficients = {std::stod(argv[1]), std::stod(argv[2])}; 
+        coefficients = {std::stod(argv[1]), std::stod(argv[2])}; 
         p = new Linear(coefficients);
     }
     if(argc == 4){
-        std::vector<double> coefficients = {std::stod(argv[1]), std::stod(argv[2]), std::stod(argv[3])}; 
+        coefficients = {std::stod(argv[1]), std::stod(argv[2]), std::stod(argv[3])}; 
         p = new Quadratic(coefficients);
     }
     else{
