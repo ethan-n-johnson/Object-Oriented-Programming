@@ -1,10 +1,11 @@
-#include <iostream>
 #include "polynomial.h"
+#include <iostream>
+#include <vector>
 
 class Polynomial{
     public:
-        Polynomial(double coefficients)
+        Polynomial(std::vector<double> coefficients)
             :_coefficients(coefficients) {}
     private:
-        double _coefficients; //vector
+        std::vector<double> _coefficients;
 };
