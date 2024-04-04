@@ -8,8 +8,6 @@ class Linear : public Polynomial{
         Linear(std::vector<double> coefficients);
         virtual ~Linear();
         std::vector<double> solve() override;
-    private:
-        std::vector<double> _coefficients; //vector
 };
 
 #endif
