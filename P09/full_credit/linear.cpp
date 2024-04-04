@@ -1,5 +1,5 @@
 #include <stdexcept>
-#include "polynomial.h"
+#include "linear.h"
 
 class Linear : public Polynomial{
     public:

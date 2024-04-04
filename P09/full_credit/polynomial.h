@@ -8,7 +8,7 @@ class Polynomial{
     public:
         Polynomial(std::vector<double> coefficients);
         virtual ~Polynomial();
-        virtual std::vector<double> solve();
+        virtual std::vector<double> solve() = 0;
     private:
         std::vector<double> _coefficients;
 };

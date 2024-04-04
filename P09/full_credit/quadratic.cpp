@@ -1,6 +1,6 @@
 #include <stdexcept>
 #include <cmath>
-#include "polynomial.h"
+#include "quadratic.h"
 
 class Quadratic : public Polynomial{
     public:
@@ -10,7 +10,7 @@ class Quadratic : public Polynomial{
                     throw std::runtime_error("a may not be 0");
                 }
             }
-        virtual ~Quadratic();
+        virtual ~Quadratic() {}
         std::vector<double> solve(){
             std::vector<double> answer;
             double a = _coefficients[0];

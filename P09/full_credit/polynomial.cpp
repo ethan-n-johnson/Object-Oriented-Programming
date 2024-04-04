@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "polynomial.h"
 
 class Polynomial{
     public:

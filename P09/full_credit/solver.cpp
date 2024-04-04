@@ -3,7 +3,7 @@
 
 int main(int argc, char* argv[]){
     std::vector<double> coefficients;
-    Polynomial *p = NULL; 
+    Polynomial *p = nullptr; 
     if(argc == 3){
         std::vector<double> coefficients = {std::stod(argv[1]), std::stod(argv[2])}; 
         p = new Linear(coefficients);
@@ -17,7 +17,8 @@ int main(int argc, char* argv[]){
         return -1;
     }
     std::vector<double> roots = p->solve();
-    for(auto c: roots){
-        std::cout << c << std::endl;
+    delete(p);
+    for(auto r: roots){
+        std::cout << r << std::endl;
     }
 }
