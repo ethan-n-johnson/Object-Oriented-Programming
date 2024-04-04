@@ -1,7 +1,4 @@
-#include <iostream>
-#include <vector>
 #include <stdexcept>
-#include "linear.h"
 #include "polynomial.h"
 
 class Linear : public Polynomial{

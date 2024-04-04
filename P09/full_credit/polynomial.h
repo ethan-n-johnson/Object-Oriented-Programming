@@ -1,3 +1,9 @@
+#ifndef POLYNOMIAL_H
+#define POLYNOMIAL_H
+
+#include <iostream>
+#include <vector>
+
 class Polynomial{
     public:
         Polynomial(std::vector<double> coefficients);
@@ -6,3 +12,5 @@ class Polynomial{
     private:
         std::vector<double> _coefficients;
 };
+
+#endif

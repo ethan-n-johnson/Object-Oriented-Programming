@@ -1,5 +1,6 @@
-#include <iostream>
-#include <vector>
+#ifndef LINEAR_H
+#define LINEAR_H
+
 #include "polynomial.h"
 
 class Linear : public Polynomial{
@@ -10,3 +11,5 @@ class Linear : public Polynomial{
     private:
         std::vector<double> _coefficients; //vector
 };
+
+#endif

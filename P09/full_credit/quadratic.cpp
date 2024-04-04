@@ -1,7 +1,5 @@
-#include <iostream>
-#include <vector>
+#include <stdexcept>
 #include <cmath>
-#include "quadratic.h"
 #include "polynomial.h"
 
 class Quadratic : public Polynomial{

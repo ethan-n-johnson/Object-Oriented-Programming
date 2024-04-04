@@ -1,4 +1,3 @@
-#include "polynomial.h"
 #include <iostream>
 #include <vector>
 

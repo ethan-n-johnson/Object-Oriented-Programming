@@ -1,5 +1,3 @@
-#include <iostream>
-#include "polynomial.h"
 #include "quadratic.h"
 #include "linear.h"
 

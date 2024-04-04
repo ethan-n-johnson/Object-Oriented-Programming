@@ -1,7 +1,6 @@
-#include <iostream>
-#include <vector>
-#include <stdexcept>
-#include "linear.h"
+#ifndef QUADRATIC_H
+#define QUADRATIC_H
+
 #include "polynomial.h"
 
 class Quadratic : public Polynomial{
@@ -12,3 +11,5 @@ class Quadratic : public Polynomial{
     private:
         std::vector<double> _coefficients; //vector
 };
+
+#endif
