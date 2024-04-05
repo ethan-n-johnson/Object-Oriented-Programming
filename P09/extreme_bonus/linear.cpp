@@ -8,8 +8,8 @@ Linear::Linear(std::vector<double> coefficients)
             }
         }
 Linear::~Linear() {}
-std::vector<double> Linear::solve(){
-    std::vector<double> answer(1);
+std::vector<std::complex<double>> Linear::solve(){
+    std::vector<std::complex<double>> answer(1);
     double a = _coefficients[0];
     double b = _coefficients[1];
     answer[0] = -b/a;

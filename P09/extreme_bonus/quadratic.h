@@ -7,7 +7,7 @@ class Quadratic : public Polynomial{
     public:
         Quadratic(std::vector<double> coefficients);
         virtual ~Quadratic();
-        std::vector<double> solve() override;
+        std::vector<std::complex<double>> solve() override;
 };
 
 #endif

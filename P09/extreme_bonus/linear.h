@@ -7,7 +7,7 @@ class Linear : public Polynomial{
     public:
         Linear(std::vector<double> coefficients);
         virtual ~Linear();
-        std::vector<double> solve() override;
+        std::vector<std::complex<double>> solve() override;
 };
 
 #endif

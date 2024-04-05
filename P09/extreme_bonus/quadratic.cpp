@@ -9,17 +9,13 @@ Quadratic::Quadratic(std::vector<double> coefficients)
             }
         }
 Quadratic::~Quadratic() {}
-std::vector<double> Quadratic::solve(){
-        std::vector<double> answer(2);
-        double a = _coefficients[0];
-        double b = _coefficients[1];
-        double c = _coefficients[2];
-        double inSqrt = (b*b)-(4*a*c);
-        if (inSqrt < 0)
-        {
-            throw std::runtime_error("No real roots!");
-        }
-        answer[0] = (-b+std::sqrt(inSqrt))/(2*a);
-        answer[1] = (-b-std::sqrt(inSqrt))/(2*a);
+std::vector<std::complex<double>> Quadratic::solve(){
+        std::vector<std::complex<double>> answer(2);
+        std::complex<double> a = _coefficients[0];
+        std::complex<double> b = _coefficients[1];
+        std::complex<double> c = _coefficients[2];
+        std::complex<double> inSqrt = (b*b)-(4.0*a*c);
+        answer[0] = (-b+std::sqrt(inSqrt))/(2.0*a);
+        answer[1] = (-b-std::sqrt(inSqrt))/(2.0*a);
         return answer;
     }

@@ -48,10 +48,17 @@ int main(int argc, char* argv[]){
     }
 
     try{
-        std::vector<double> roots = p->solve();
+        std::vector<std::complex<double>> roots = p->solve();
         delete p;
         std::cout << "Root(s) are ";
-        for(auto r: roots) std::cout << r << " ";
+        for(auto r: roots){
+            if (r.real() == -0) std::cout << "0 ";
+            else std::cout << r.real() << " ";
+            if(r.imag() != 0){
+                if (r.imag() < 0) std::cout << "- "  << r.imag()*-1 << "i ";
+                else std::cout << "+ " << r.imag() << "i ";
+            }
+        }
         std::cout << std::endl;
     } catch (const std::runtime_error& e) {
         std::cerr << "Runtime error: " << e.what() << std::endl;
