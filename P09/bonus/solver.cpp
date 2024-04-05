@@ -23,9 +23,17 @@ int main(int argc, char* argv[]){
         std::cout << "Root(s) are ";
         for(auto r: roots) std::cout << r << " ";
         std::cout << std::endl;
-    } catch(std::exception& e){
-        std::cerr << e.what() << std::endl;
+    } catch (const std::runtime_error& e) {
+        std::cerr << "Runtime error: " << e.what() << std::endl;
         delete p;
         return -1;
+    } catch (const std::out_of_range& e) {
+        std::cerr << "Out of range: " << e.what() << std::endl;
+        delete p;
+        return -2;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        delete p;
+        return -4;
     }
 }
