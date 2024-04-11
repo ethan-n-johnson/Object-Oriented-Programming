@@ -28,7 +28,8 @@ void Inch::validate(){
         throw std::invalid_argument("Denominator must be 2, 4, 8, 16, 32, or 64");
     }
 }
-Inch Inch::operator+(const Inch& rhs){return Inch()}
+Inch Inch::operator+(const Inch& rhs){
+}
 inline bool Inch::operator==(const Inch& rhs){return(compare(rhs) == 0);}
 inline bool Inch::operator!=(const Inch& rhs){return(compare(rhs) != 0);}
 inline bool Inch::operator<(const Inch& rhs){return(compare(rhs) < 0);}

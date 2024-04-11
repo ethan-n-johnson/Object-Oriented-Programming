@@ -18,8 +18,8 @@ class Inch{
         inline bool operator<=(const Inch& rhs);
         inline bool operator>(const Inch& rhs);
         inline bool operator>=(const Inch& rhs);
-        std::ostream& operator<<(std::ostream& ost, Inch& inch);
-        std::istream& operator>>(std::istream& ist, const Inch& inch);
+        friend std::ostream& operator<<(std::ostream& ost, Inch& inch);
+        friend std::istream& operator>>(std::istream& ist, const Inch& inch);
     private:
         int _whole;
         int _numerator;
