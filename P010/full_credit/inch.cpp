@@ -13,7 +13,7 @@ int const Inch::compare(const Inch& rhs){
     if (*this == rhs) return 0;
 }
 void Inch::validate(){
-    if (_denominator == 2 || 4 || 8 || 16 || 32 || 64)
+    if (_denominator == 2 || _denominator == 4 || _denominator == 8 || _denominator == 16 || _denominator == 32 || _denominator == 64)
     {
         while (_numerator >= _denominator)
         {
@@ -29,6 +29,25 @@ void Inch::validate(){
     }
 }
 Inch Inch::operator+(const Inch& rhs){
+    int new_numerator1 = rhs._numerator;
+    int new_denominator1 = rhs._denominator;
+    int new_whole1 = rhs._whole;
+    int new_numerator2 = _numerator;
+    int new_denominator2 = _denominator;
+    int new_whole2 = _whole;
+    while(new_denominator1 != 64){
+        new_denominator1 = new_denominator1 * 2;
+        new_numerator1 = new_numerator1 * 2;
+    }
+    new_whole1 = new_whole1*new_denominator1;
+    while(new_denominator2 != 64){
+        new_denominator2 = new_denominator2 * 2;
+        new_numerator2 = new_numerator2 * 2;
+    }
+    new_whole2 = new_whole2*new_denominator2;
+    int new_numerator = new_whole1+new_whole2+new_numerator1+new_numerator2;
+    Inch newInch = Inch(0, new_numerator, 64);
+    return newInch;
 }
 inline bool Inch::operator==(const Inch& rhs){return(compare(rhs) == 0);}
 inline bool Inch::operator!=(const Inch& rhs){return(compare(rhs) != 0);}
