@@ -3,20 +3,22 @@
 #include <iostream>
 #include <ostream>
 #include <istream>
+#include <numeric>
+#include <stdexcept>
 
 class Inch{
     public:
         Inch(int whole, int numerator, int denominator);
-        virtual ~Inch();
         Inch();
-        inline bool operator+(const Inch& rhs);
+        virtual ~Inch();
+        Inch operator+(const Inch& rhs);
         inline bool operator==(const Inch& rhs);
         inline bool operator!=(const Inch& rhs);
         inline bool operator<(const Inch& rhs);
         inline bool operator<=(const Inch& rhs);
         inline bool operator>(const Inch& rhs);
         inline bool operator>=(const Inch& rhs);
-        std::ostream&  operator<<(std::ostream& ost, Inch& inch);
+        std::ostream& operator<<(std::ostream& ost, Inch& inch);
         std::istream& operator>>(std::istream& ist, const Inch& inch);
     private:
         int _whole;
