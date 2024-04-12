@@ -6,11 +6,11 @@ Inch::Inch(int whole, int numerator, int denominator)
 Inch::Inch() : Inch(0,0,2){}
 Inch::~Inch() {}
 int const Inch::compare(const Inch& rhs){
-    if (*this == rhs) return 0;
-    if (*this < rhs) return -1;
-    if (*this > rhs) return 1;
-    if (*this == rhs) return 0;
-    if (*this == rhs) return 0;
+    double thisValue = static_cast<double>(_whole) + static_cast<double>(_numerator) / _denominator;
+    double rhsValue = static_cast<double>(rhs._whole) + static_cast<double>(rhs._numerator) / rhs._denominator;
+    if (thisValue < rhsValue) return -1;
+    if (thisValue > rhsValue) return 1;
+    return 0;
 }
 void Inch::validate(){
     if (_denominator == 2 || _denominator == 4 || _denominator == 8 || _denominator == 16 || _denominator == 32 || _denominator == 64)
