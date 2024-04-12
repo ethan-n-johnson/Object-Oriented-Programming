@@ -1,4 +1,4 @@
-#include <inch.h>
+#include "inch.h"
 Inch::Inch(int whole, int numerator, int denominator)
     : _whole(whole), _numerator(numerator), _denominator(denominator){
         validate();
@@ -49,11 +49,13 @@ Inch Inch::operator+(const Inch& rhs){
     Inch newInch = Inch(0, new_numerator, 64);
     return newInch;
 }
-inline bool Inch::operator==(const Inch& rhs){return(compare(rhs) == 0);}
-inline bool Inch::operator!=(const Inch& rhs){return(compare(rhs) != 0);}
-inline bool Inch::operator<(const Inch& rhs){return(compare(rhs) < 0);}
-inline bool Inch::operator<=(const Inch& rhs){return(compare(rhs) <= 0);}
-inline bool Inch::operator>(const Inch& rhs){return(compare(rhs) > 0);}
-inline bool Inch::operator>=(const Inch& rhs){return(compare(rhs) >= 0);}
-std::ostream& Inch::operator<<(std::ostream& ost, Inch& inch){}
-std::ostream& Inch::operator>>(std::ostream& ost, const Inch& inch){}
+std::ostream& operator<<(std::ostream& ost, const Inch& inch){
+    ost << inch._whole << " " << inch._numerator << "/" << inch._denominator;
+    return ost;
+}
+std::istream& operator>>(std::istream& ist, Inch& inch){
+    char slash;
+    ist >> inch._whole >> inch._numerator >> slash >> inch._denominator;
+    inch.validate();
+    return ist;
+}

@@ -12,14 +12,14 @@ class Inch{
         Inch();
         virtual ~Inch();
         Inch operator+(const Inch& rhs);
-        inline bool operator==(const Inch& rhs);
-        inline bool operator!=(const Inch& rhs);
-        inline bool operator<(const Inch& rhs);
-        inline bool operator<=(const Inch& rhs);
-        inline bool operator>(const Inch& rhs);
-        inline bool operator>=(const Inch& rhs);
-        friend std::ostream& operator<<(std::ostream& ost, Inch& inch);
-        friend std::istream& operator>>(std::istream& ist, const Inch& inch);
+        inline bool operator==(const Inch& rhs){return(compare(rhs) == 0);}
+        inline bool operator!=(const Inch& rhs){return(compare(rhs) != 0);}
+        inline bool operator<(const Inch& rhs){return(compare(rhs) < 0);}
+        inline bool operator<=(const Inch& rhs){return(compare(rhs) <= 0);}
+        inline bool operator>(const Inch& rhs){return(compare(rhs) > 0);}
+        inline bool operator>=(const Inch& rhs){return(compare(rhs) >= 0);}
+        friend std::ostream& operator<<(std::ostream& ost, const Inch& inch);
+        friend std::istream& operator>>(std::istream& ist, Inch& inch);
     private:
         int _whole;
         int _numerator;
