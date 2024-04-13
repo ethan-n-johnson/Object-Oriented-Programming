@@ -13,7 +13,7 @@ int const Inch::compare(const Inch& rhs){
     return 0;
 }
 void Inch::validate(){
-    if (_denominator == 2 || _denominator == 4 || _denominator == 8 || _denominator == 16 || _denominator == 32 || _denominator == 64)
+    if (_denominator == 1 || _denominator == 2 || _denominator == 4 || _denominator == 8 || _denominator == 16 || _denominator == 32 || _denominator == 64)
     {
         while (_numerator >= _denominator)
         {
@@ -25,7 +25,7 @@ void Inch::validate(){
         _denominator = _denominator / gcd;
     }
     else{
-        throw std::invalid_argument("Denominator must be 2, 4, 8, 16, 32, or 64");
+        throw std::invalid_argument("Denominator must be 1, 2, 4, 8, 16, 32, or 64");
     }
 }
 Inch Inch::operator+(const Inch& rhs){
