@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdexcept>
+
 #ifndef UNIVERSITY_H
 #define UNIVERSITY_H
 class University
