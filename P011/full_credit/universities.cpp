@@ -26,11 +26,7 @@ int main(int argc, char const *argv[]){
     {
         ifs.ignore();
         ifs >> university;
-        if (map.find(state) == map.end())
-        {
-            map[state] = Universities();
-        }
-        
+        if (map.find(state) == map.end()) map[state] = Universities();
         map[state].push_back(university);
     }
     while(true)
