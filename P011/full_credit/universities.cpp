@@ -15,16 +15,16 @@ int main(int argc, char const *argv[]){
     }
     std::ifstream ifs;
     ifs.open(std::string(argv[1]));
-    if (ifs)
+    if (!ifs)
     {
         std::cout << argv[1] << ": file not found" << std::endl;
         return -2;
     }
     std::map<State, Universities> map;
     State state; University university;
-    while (ifs)
+    while (ifs >> state)
     {
-        ifs >> state;
+        ifs.ignore();
         ifs >> university;
         if (map.find(state) == map.end())
         {
@@ -33,18 +33,19 @@ int main(int argc, char const *argv[]){
         
         map[state].push_back(university);
     }
-    while (true)
+    while(true)
     {
         std::string in_state;
+        std::cout << std::endl;
         std::cout << "Which state (2-character abbrevation): ";
         std::cin >> in_state;
         auto it = map.find(in_state);
+        std::cout << std::endl;
         if (it == map.end()) std::cout << "No universities found in " << in_state << std::endl;
         else{
-            for (const auto& u : it->second){
-                std::cout << university << std::endl;
+            for (const auto& uni : it->second){
+                std::cout << uni << std::endl;
             }
-            
         }
     }
 }

@@ -16,12 +16,13 @@ public:
     std::string name() const;
     int enrollment() const;
     friend std::istream& operator>>(std::istream& ist, University& reading){
-        ist >> reading._name >> reading._enrollment;
+        std::getline(ist, reading._name);
+        ist >> reading._enrollment;
         reading.validate();
         return ist;
     }
     friend std::ostream& operator<<(std::ostream& ost, const University& reading){
-        ost << reading._name << " has an enrollemnt of " << reading._enrollment;
+        ost << reading._name << " has an enrollment of " << reading._enrollment;
         return ost;
     }
 };
