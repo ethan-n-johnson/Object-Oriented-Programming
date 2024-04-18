@@ -10,7 +10,7 @@ typedef std::vector<University> Universities;
 int main(int argc, char const *argv[]){
     if (argc != 2)
     {
-        std::cout << "USAGE: " << std::endl;
+        std::cout << "USAGE: ./univerities enrollment.txt" << std::endl;
         return -1;
     }
     std::ifstream ifs;
@@ -42,10 +42,6 @@ int main(int argc, char const *argv[]){
         auto it = map.find(in_state);
         std::cout << std::endl;
         if (it == map.end()) std::cout << "No universities found in " << in_state << std::endl;
-        else{
-            for (const auto& uni : it->second){
-                std::cout << uni << std::endl;
-            }
-        }
+        else for (const auto& uni : it->second) std::cout << uni << std::endl;
     }
 }
