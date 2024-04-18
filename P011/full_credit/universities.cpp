@@ -35,9 +35,8 @@ int main(int argc, char const *argv[]){
         std::cout << std::endl;
         std::cout << "Which state (2-character abbrevation): ";
         std::cin >> in_state;
-        auto it = map.find(in_state);
         std::cout << std::endl;
-        if (it == map.end()) std::cout << "No universities found in " << in_state << std::endl;
-        else for (const auto& uni : it->second) std::cout << uni << std::endl;
+        if (map.find(in_state) == map.end()) std::cout << "No universities found in " << in_state << std::endl;
+        else for (auto& uni : map.at(in_state)) std::cout << uni << std::endl;
     }
 }
