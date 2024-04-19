@@ -29,6 +29,7 @@ int main(int argc, char const *argv[]){
         if (map.find(state) == map.end()) map[state] = Universities();
         map[state].push_back(university);
     }
+    ifs.close();
     while(true)
     {
         std::string in_state;
