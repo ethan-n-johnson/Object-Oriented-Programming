@@ -9,10 +9,10 @@ typedef std::string State;
 typedef std::vector<University> Universities;
 
 template <typename T>
-void print_container(const T& t){
+void print_container(std::ostream& ost, const T& t){
     auto it = t;
-    std::cout << std::endl;
-    for (const auto& uni : it->second) std::cout << uni << std::endl;
+    ost << std::endl;
+    for (const auto& a : it->second) ost << a << std::endl;
 }
 int main(int argc, char const *argv[]){
     if (argc != 3)
@@ -68,6 +68,6 @@ int main(int argc, char const *argv[]){
         std::cout << "Which state (2-character abbrevation): ";
         std::cin >> in_state;
         if (university_map.find(in_state) == university_map.end()) std::cout << "No universities found in " << in_state << std::endl;
-        else print_container(university_map.find(in_state));
+        else print_container(std::cout, university_map.find(in_state));
     }
 }
